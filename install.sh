@@ -2,8 +2,16 @@
 # Install xcode & Homebrew
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" < /dev/null 2> /dev/null
 
+
+# Configure GIT
+git config --global user.email "lukecfairchild@gmail.com"
+git config --global user.name "Luke Fairchild"
+git config --global core.editor "vim"
+
+
 # Install wget
 brew install wget
+
 
 # Install node
 brew install node 
