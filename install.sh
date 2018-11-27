@@ -23,10 +23,18 @@ hdiutil attach ./googlechrome.dmg
 sudo cp -r /Volumes/Google\ Chrome/Google\ Chrome.app /Applications/
 hdiutil detach /Volumes/Google\ Chrome
 rm googlechrome.dmg
-open -a "Google Chrome" "https://chrome.google.com/webstore/detail/lastpass-free-password-ma/hdokiejnpimakedhajhdlcegeplioahd?hl=en-US"
-read -n 1 -s -r -p "Press any key to continue"
 echo 'Chrome Install Complete'
 
+
+# Install LastPass
+wget https://download.cloud.lastpass.com/mac/lpmacosx.zip
+unzip -a lpmacosx.zip
+rm ./lpmacosx.zip
+open -W ./LastPass\ Installer/LastPass\ Installer.app
+rm -rf ./LastPass\ Installer ./__MACOSX
+echo "Please login to last pass."
+read -n 1 -s -r -p "Press any key to continue"
+echo 'LastPass Install Complete'
 
 
 # Install Sublime Text
