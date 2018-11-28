@@ -150,6 +150,10 @@ printf '
 ]
 ' > $HOME/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/Default\ \(OSX\).sublime-keymap
 
+# Fix subl command
+rm -rf /usr/local/bin/subl
+ln -s /Applications/Sublime\ Text\ 2.app/Contents/SharedSupport/bin/subl /usr/local/bin
+
 echo 'Sublime Install Complete'
 
 
@@ -234,11 +238,6 @@ read -n 1 -s -r -p "Press any key to continue"
 
 # Fix already installed commands in zsh
 echo 'export PATH="$HOME/bin:/usr/local/bin:$PATH"' >> ~/.zshrc
-
-
-# Fix subl command
-rm -rf /usr/local/bin/subl
-ln -s /Applications/Sublime\ Text\ 2.app/Contents/SharedSupport/bin/subl /usr/local/bin
 
 
 # Generate SSH key
