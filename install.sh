@@ -74,7 +74,82 @@ hdiutil attach ./sublime.dmg
 sudo cp -r /Volumes/Sublime\ Text/Sublime\ Text.app /Applications/
 hdiutil detach /Volumes/Sublime\ Text
 rm sublime.dmg
-sudo wget -P /Users/lukef/Library/Application\ Support/Sublime\ Text\ 3/Installed\ Packages https://packagecontrol.io/Package%20Control.sublime-package
+
+# Ensure Sublime folder exists
+mkdir ~/Library/Application\ Support/Sublime\ Text\ 3/
+mkdir ~/Library/Application\ Support/Sublime\ Text\ 3/Packages
+mkdir ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User
+mkdir ~/Library/Application\ Support/Sublime\ Text\ 3/Installed\ Packages
+
+# Install Package Control
+wget -P $HOME/Library/Application\ Support/Sublime\ Text\ 3/Installed\ Packages https://packagecontrol.io/Package%20Control.sublime-package
+
+# Install "A File Icon"
+git clone git@github.com:ihodev/a-file-icon.git
+mv a-file-icon ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/A\ File\ Icon
+
+# Install "One Dark Color Scheme"
+wget -P $HOME/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/ https://raw.githubusercontent.com/IceTimux/one-dark-sublime-text-3-color-scheme/master/One%20Dark.tmTheme
+
+# Install "AlignTab"
+git clone git@github.com:randy3k/AlignTab.git
+mv AlignTab $HOME/Library/Application\ Support/Sublime\ Text\ 3/Packages/AlignTab
+
+# Install "BracketHighlighter"
+git clone git@github.com:facelessuser/BracketHighlighter.git
+mv BracketHighlighter $HOME/Library/Application\ Support/Sublime\ Text\ 3/Packages/BracketHighlighter
+
+# Install "GitGutter"
+git clone git@github.com:jisaacks/GitGutter.git
+mv GitGutter $HOME/Library/Application\ Support/Sublime\ Text\ 3/Packages/GitGutter
+
+# Install "Dockerfile Syntax Highlighting"
+git clone git@github.com:asbjornenge/Docker.tmbundle.git
+mv Docker.tmbundle $HOME/Library/Application\ Support/Sublime\ Text\ 3/Packages/Docker\ Syntax\ Highlighting
+
+# Install "Unicode Character Highlighter"
+git clone git@github.com:possan/sublime_unicode_nbsp.git
+mv sublime_unicode_nbsp $HOME/Library/Application\ Support/Sublime\ Text\ 3/Packages/Unicode\ Character\ Highlighter
+
+# Install "SideBarEnhancements"
+git clone git@github.com:SideBarEnhancements-org/SideBarEnhancements.git
+mv SideBarEnhancements $HOME/Library/Application\ Support/Sublime\ Text\ 3/Packages/SideBarEnhancements
+
+# Install "BracketGuard"
+git clone git@github.com:philippotto/Sublime-BracketGuard.git
+mv Sublime-BracketGuard $HOME/Library/Application\ Support/Sublime\ Text\ 3/Packages/BracketGuard
+
+# Install "Commandhelper"
+wget -P $HOME/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/ https://letsbuild.net/jenkins/job/Methodscript%20Syntax%20-%20Sublime/lastSuccessfulBuild/artifact/Commandhelper.tmLanguage
+
+# Copy Settings
+printf '
+{
+        "auto_complete_commit_on_tab": true,
+        "auto_match_enabled": false,
+        "color_scheme": "Packages/User/One Dark.tmTheme",
+        "font_size": 11,
+        "highlight_line": true,
+        "ignored_packages":
+        [
+                "0_package_control_loader",
+                "Vintage"
+        ],
+        "show_full_path": true,
+        "theme": "Adaptive.sublime-theme"
+}
+' > ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/Preferences.sublime-settings
+
+# Copy Hotkeys
+printf '
+[
+        {"keys": ["ctrl+d"], "command": "duplicate_line"},
+        {"keys": ["ctrl+h"], "command": "show_panel", "args": {"panel": "replace", "in_selection": false}},
+        {"keys": ["command+shift+/"], "command": "toggle_comment", "args": {"block": true}},
+        {"keys": ["option+shift+/"], "command": "toggle_comment", "args": {"block": true}}
+]
+' > $HOME/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/Default\ \(OSX\).sublime-keymap
+
 echo 'Sublime Install Complete'
 
 
