@@ -5,7 +5,7 @@ read -n 1 -s -r -p "Press any key to continue"
 
 
 # Install Homebrew
-sudo /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
 
 # Configure GIT
