@@ -3,8 +3,9 @@
 xcode-select --install
 read -n 1 -s -r -p "Press any key to continue"
 
+
 # Install Homebrew
-ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" < /dev/null 2> /dev/null
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
 
 # Configure GIT
