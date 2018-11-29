@@ -25,9 +25,11 @@ brew install node
 # Install Chrome
 wget https://dl.google.com/chrome/mac/stable/GGRO/googlechrome.dmg
 hdiutil attach ./googlechrome.dmg
-sudo cp -r /Volumes/Google\ Chrome/Google\ Chrome.app /Applications/
+cp -r /Volumes/Google\ Chrome/Google\ Chrome.app /Applications/
 hdiutil detach /Volumes/Google\ Chrome
 rm googlechrome.dmg
+open -W -a "Google Chrome" --args --make-default-browser
+open -W -a "Google Chrome" --args --make-default-browser
 echo 'Chrome Install Complete'
 
 
@@ -38,6 +40,7 @@ rm ./lpmacosx.zip
 open -W ./LastPass\ Installer/LastPass\ Installer.app
 rm -rf ./LastPass\ Installer ./__MACOSX
 echo "Please login to last pass."
+open -W -a "Google Chrome"
 read -n 1 -s -r -p "Press any key to continue"
 echo 'LastPass Install Complete'
 
@@ -76,7 +79,7 @@ rm sublime.js
 rm package-lock.json
 rm -rf node_modules
 hdiutil attach ./sublime.dmg
-sudo cp -r /Volumes/Sublime\ Text/Sublime\ Text.app /Applications/
+cp -r /Volumes/Sublime\ Text/Sublime\ Text.app /Applications/
 hdiutil detach /Volumes/Sublime\ Text
 rm sublime.dmg
 
@@ -157,7 +160,7 @@ printf '
 
 # Fix subl command
 rm -rf /usr/local/bin/subl
-ln -s /Applications/Sublime\ Text\ 2.app/Contents/SharedSupport/bin/subl /usr/local/bin
+ln -s /Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl /usr/local/bin
 
 echo 'Sublime Install Complete'
 
@@ -165,7 +168,7 @@ echo 'Sublime Install Complete'
 # Install Discord
 wget https://dl.discordapp.net/apps/osx/0.0.251/Discord.dmg
 hdiutil attach ./Discord.dmg
-sudo cp -r /Volumes/Discord/Discord.app /Applications/
+cp -r /Volumes/Discord/Discord.app /Applications/
 hdiutil detach /Volumes/Discord
 rm Discord.dmg
 echo 'Discord Install Complete'
@@ -207,9 +210,9 @@ echo "Docker Install Complete"
 wget https://bahoom.com/hyperdock/HyperDock.dmg
 hdiutil attach ./Hyperdock.dmg
 open /Volumes/Hyperdock/HyperDock.prefpane
+read -n 1 -s -r -p "Press any key to continue"
 hdiutil detach /Volumes/Hyperdock
 rm Hyperdock.dmg
-read -n 1 -s -r -p "Press any key to continue"
 echo 'Hyperdock Install Complete'
 
 
@@ -227,7 +230,8 @@ echo 'Scroll Reverser Install Complete'
 # Install Karabiner
 wget https://pqrs.org/osx/karabiner/files/Karabiner-Elements-12.1.0.dmg
 hdiutil attach ./Karabiner-Elements-12.1.0.dmg
-open /Volumes/Karabiner-Elements-12.1.0/Karabiner-Elements.sparkle_guided.pkg
+open -W /Volumes/Karabiner-Elements-12.1.0/Karabiner-Elements.sparkle_guided.pkg
+read -n 1 -s -r -p "Press any key to continue"
 hdiutil detach /Volumes/Karabiner-Elements-12.1.0
 rm Karabiner-Elements-12.1.0.dmg
 open /Applications/Karabiner-Elements.app
@@ -255,19 +259,6 @@ mv iTerm.app /Applications/iTerm.app
 open /Applications/iTerm.app
 
 
-# Install oh-my-zsh
-sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-printf '
-Please set the following in iTerm2:
-iTerm2 > Preferences... > Profiles > Command > Command: /bin/zsh
-'
-read -n 1 -s -r -p "Press any key to continue"
-
-
-# Fix already installed commands in zsh
-echo 'export PATH="$HOME/bin:/usr/local/bin:$PATH"' >> ~/.zshrc
-
-
 # Generate SSH key
 ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa -q -N ""
 # Copy key to clipboard
@@ -276,4 +267,8 @@ pbcopy < ~/.ssh/id_rsa.pub
 open -a "Google Chrome" "https://github.com/settings/ssh/new"
 echo 'Paste your ssh-key into github'
 read -n 1 -s -r -p "Press any key to continue"
+
+
+# Install oh-my-zsh
+sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
