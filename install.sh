@@ -172,6 +172,29 @@ sudo chown root:wheel $(brew --prefix)/opt/docker-machine-driver-xhyve/bin/docke
 sudo chmod u+s $(brew --prefix)/opt/docker-machine-driver-xhyve/bin/docker-machine-driver-xhyve
 docker-machine create default
 eval $(docker-machine env default)
+printf '
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>EnvironmentVariables</key>
+        <dict>
+            <key>PATH</key>
+            <string>/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin</string>
+        </dict>
+        <key>Label</key>
+        <string>com.docker.machine.default</string>
+        <key>ProgramArguments</key>
+        <array>
+            <string>/usr/local/bin/docker-machine</string>
+            <string>start</string>
+            <string>default</string>
+        </array>
+        <key>RunAtLoad</key>
+        <true/>
+    </dict>
+</plist>
+' > $HOME/Library/LaunchAgents/com.docker.machine.default.plist
 echo "Docker Install Complete"
 
 
@@ -185,7 +208,7 @@ read -n 1 -s -r -p "Press any key to continue"
 echo 'Hyperdock Install Complete'
 
 
-# Install Hyperdock
+# Install ScrollReverser
 wget https://pilotmoon.com/downloads/ScrollReverser-1.7.6.zip
 unzip -a ScrollReverser-1.7.6.zip
 rm ScrollReverser-1.7.6.zip
