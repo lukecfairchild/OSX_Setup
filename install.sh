@@ -228,13 +228,18 @@ echo 'Slack Install Complete'
 
 
 # Install iTerm2
-brew castk install iterm2
-
 wget https://iterm2.com/downloads/stable/iTerm2-3_2_5.zip
 unzip -a iTerm2-3_2_5.zip
 rm iTerm2-3_2_5.zip
 mv iTerm.app /Applications/iTerm.app
 open /Applications/iTerm.app
+
+
+#Install Postman
+wget -O postman.zip https://dl.pstmn.io/download/latest/osx
+unzip -a postman.zip
+mv Postman.app /Applications/Postman.app
+rm postman.zip
 
 
 # Generate SSH key
