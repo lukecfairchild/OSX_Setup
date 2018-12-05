@@ -175,34 +175,12 @@ echo 'Discord Install Complete'
 
 
 # Install Docker
-brew install docker docker-compose docker-machine xhyve docker-machine-driver-xhyve
-sudo chown root:wheel $(brew --prefix)/opt/docker-machine-driver-xhyve/bin/docker-machine-driver-xhyve
-sudo chmod u+s $(brew --prefix)/opt/docker-machine-driver-xhyve/bin/docker-machine-driver-xhyve
-docker-machine create default
-eval $(docker-machine env default)
-printf '
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
-    <dict>
-        <key>EnvironmentVariables</key>
-        <dict>
-            <key>PATH</key>
-            <string>/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin</string>
-        </dict>
-        <key>Label</key>
-        <string>com.docker.machine.default</string>
-        <key>ProgramArguments</key>
-        <array>
-            <string>/usr/local/bin/docker-machine</string>
-            <string>start</string>
-            <string>default</string>
-        </array>
-        <key>RunAtLoad</key>
-        <true/>
-    </dict>
-</plist>
-' > $HOME/Library/LaunchAgents/com.docker.machine.default.plist
+wget https://download.docker.com/mac/stable/Docker.dmg
+hdiutil attach ./Docker.dmg
+cp -r /Volumes/Docker/Docker.app /Applications/
+open -a /Applications/Docker.app
+hdiutil detach /Volumes/Docker
+rm Docker.dmg
 echo "Docker Install Complete"
 
 
