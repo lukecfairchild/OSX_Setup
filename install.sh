@@ -176,6 +176,11 @@ echo 'Discord Install Complete'
 
 # Install Docker
 wget https://download.docker.com/mac/stable/Docker.dmg
+mkdir $HOME/.docker && printf '
+{
+  "bip" : "192.168.1.5/24"
+}
+' > $HOME/.docker/daemon.json
 hdiutil attach ./Docker.dmg
 cp -r /Volumes/Docker/Docker.app /Applications/
 open -a /Applications/Docker.app
