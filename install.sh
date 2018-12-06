@@ -55,22 +55,22 @@ const FileSystem = require('fs')
 
 console.log('[sublime.js] Getting download URL')
 HTTPS.get('https://www.sublimetext.com/3', (pageResponse) => {
-        let data = ''
-        pageResponse.on('data', (chunk) => {
-                data += chunk
-        })
-        pageResponse.on('end', () => {
-                const DOM = new JSDOM.JSDOM(data)
-                const filePath = DOM.window.document.querySelector('#dl_osx a').href
-                console.log('[sublime.js] URL retrieved')
-                const sublimeDmgFile = FileSystem.createWriteStream('sublime.dmg')
-                console.log('[sublime.js] Downloading sublime.dmg')
-                HTTPS.get(filePath, (fileResponse) => {
-                        fileResponse.pipe(sublimeDmgFile)
-                })
-        })
+	let data = ''
+	pageResponse.on('data', (chunk) => {
+			data += chunk
+	})
+	pageResponse.on('end', () => {
+		const DOM = new JSDOM.JSDOM(data)
+		const filePath = DOM.window.document.querySelector('#dl_osx a').href
+		console.log('[sublime.js] URL retrieved')
+		const sublimeDmgFile = FileSystem.createWriteStream('sublime.dmg')
+		console.log('[sublime.js] Downloading sublime.dmg')
+		HTTPS.get(filePath, (fileResponse) => {
+			fileResponse.pipe(sublimeDmgFile)
+		})
+	})
 }).on('error', (error) => {
-        console.error(error)
+		console.error(error)
 })
 " > sublime.js
 npm install --save jsdom
@@ -133,28 +133,28 @@ wget -P $HOME/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/ https
 # Copy Settings
 printf '
 {
-        "auto_complete_commit_on_tab": true,
-        "auto_match_enabled": false,
-        "color_scheme": "Packages/User/One Dark.tmTheme",
-        "font_size": 11,
-        "highlight_line": true,
-        "ignored_packages":
-        [
-                "0_package_control_loader",
-                "Vintage"
-        ],
-        "show_full_path": true,
-        "theme": "Adaptive.sublime-theme"
+	"auto_complete_commit_on_tab": true,
+	"auto_match_enabled": false,
+	"color_scheme": "Packages/User/One Dark.tmTheme",
+	"font_size": 11,
+	"highlight_line": true,
+	"ignored_packages":
+	[
+		"0_package_control_loader",
+		"Vintage"
+	],
+	"show_full_path": true,
+	"theme": "Adaptive.sublime-theme"
 }
 ' > ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/Preferences.sublime-settings
 
 # Copy Hotkeys
 printf '
 [
-        {"keys": ["ctrl+d"], "command": "duplicate_line"},
-        {"keys": ["ctrl+h"], "command": "show_panel", "args": {"panel": "replace", "in_selection": false}},
-        {"keys": ["command+shift+/"], "command": "toggle_comment", "args": {"block": true}},
-        {"keys": ["option+shift+/"], "command": "toggle_comment", "args": {"block": true}}
+	{"keys": ["ctrl+d"], "command": "duplicate_line"},
+	{"keys": ["ctrl+h"], "command": "show_panel", "args": {"panel": "replace", "in_selection": false}},
+	{"keys": ["command+shift+/"], "command": "toggle_comment", "args": {"block": true}},
+	{"keys": ["option+shift+/"], "command": "toggle_comment", "args": {"block": true}}
 ]
 ' > $HOME/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/Default\ \(OSX\).sublime-keymap
 
